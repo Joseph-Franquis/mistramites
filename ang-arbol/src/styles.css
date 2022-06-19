@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+/*Esto quita los margenes inecesarios*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  /*Colores de la paginas*/
+  --pri-color: #F8ECD1;
+  --pri-hover: #FFCD38;
+  --sec-color: #DEB6AB;
+  --ter-color: #AC7D88;
+  --cur-color: #85586F;
+}
+
+.etiqueta {
+  background-color: rgba(72, 241, 123, 0.5);
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
+  margin: 5px;
+}

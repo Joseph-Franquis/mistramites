@@ -1,0 +1,16 @@
+<form [formGroup]="formRegister" (submit)="send()">
+  <div>
+    <label for="correo">correo</label>
+    <input type="text" formControlName="correo" id="correo">
+  </div>
+  <div>
+    <label for="password">password</label>
+    <input type="text" formControlName="password" id="password">
+  </div>
+  <div>
+    <button>Send</button>
+  </div>
+  <div>
+    {{formRegister.valid | json}}
+  </div>
+</form>

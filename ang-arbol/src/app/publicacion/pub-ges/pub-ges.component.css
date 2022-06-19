@@ -1,0 +1,71 @@
+.gestion-container{
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30% 50% 20%;
+  grid-template-rows: 40px auto;
+  grid-template-areas: "head head buttons" "last cont cont";
+}
+
+.titulo {
+  grid-area: head;
+  padding: 5px;
+}
+
+.buttons {
+  grid-area: buttons;
+  padding: 5px;
+}
+
+.last{
+  margin: 10px;
+  margin-top: 5px;
+  grid-area: last;
+  max-height: 300px;
+  min-height: 80px;
+  background-color: var(--pri-color);
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 40px auto;
+  grid-template-areas: "titulo titulo" "cont cont";
+  height: 100%;
+}
+
+.last h2 {
+  grid-area: titulo;
+  margin: auto;
+}
+
+.last-d {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+
+.last-d b {
+  width: 20%;
+  grid-area: key;
+  margin: auto;
+}
+
+.last-d p {
+  width: 80%;
+  grid-area: cont;
+  margin: auto;
+}
+
+.table-list{
+  padding: 5px;
+  height: auto;
+  grid-area: cont;
+}
+
+.list-i{
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--pri-color);
+  width: 100%;
+}
+

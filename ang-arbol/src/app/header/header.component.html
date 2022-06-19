@@ -1,0 +1,33 @@
+<header>
+  <div class="header-i">
+    <div class="logo">
+      <!-- <img src="./assets/img/logo_size.jpg" alt=""> -->
+    </div>
+    <ul class="nav-list">
+      <li class="enlace-list" *ngFor="let ruta_a of rutas_nav">
+        <a [routerLink]="ruta_a.ruta" [ngClass]="{'enlace-desac': ruta_a.ruta == router.url, 'enlace': ruta_a.ruta != router.url}">{{ruta_a.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="header-f">
+    <div class="icon user" (click)="toggleMenuUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="64" height="64"><path d="M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z"/><path d="M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z"/></svg>
+    </div>
+  </div>
+  <div class="menu-user desac">
+    <div class="icon user" (click)="toggleMenuUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="64" height="64"><path d="M12,12A6,6,0,1,0,6,6,6.006,6.006,0,0,0,12,12ZM12,2A4,4,0,1,1,8,6,4,4,0,0,1,12,2Z"/><path d="M12,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z"/></svg>
+    </div>
+    <li class="user-list">
+      <div *ngFor="let ruta_u of rutas_user">
+        <a class="nav-link" [routerLink]="ruta_u.ruta" [ngClass]="{'desactivado': ruta_u.ruta == router.url, 'enlace': ruta_u.ruta != router.url}" *ngIf="ruta_u.rol.includes(this.rol);">{{ruta_u.name}}</a>
+      </div>
+      <div >
+        <!-- <a class="" [routerLink]="ruta_u.ruta" [ngClass]="{'desactivado': ruta_u.ruta == router.url, 'enlace': ruta_u.ruta != router.url}" *ngIf="ruta_u.rol.includes(this.rol);">{{ruta_u.name}}</a> -->
+      </div>
+    </li>
+  </div>
+  <div class="menu-user-shadow desac" (click)="toggleMenuUser()">
+
+  </div>
+</header>

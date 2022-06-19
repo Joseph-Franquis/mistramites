@@ -1,0 +1,27 @@
+<div class="gestion-container">
+  <div class="titulo">
+    <h2>Gestion de Publicaciones</h2>
+  </div>
+  <div class="buttons">
+    <a [routerLink]="['/publicacion/crear']">Crear Nueva Publicacion</a>
+  </div>
+
+  <div class="last">
+    <h2>Ultima Publicacion</h2>
+    <div class="last-d" *ngIf="ultima_pub">
+
+      <input type="hidden" value="{{ultima_pub.id}}" class="id_pub">
+      <b>Titulo: </b><p>{{ ultima_pub.titulo }}</p>
+      <b>Creado: </b><p >{{ ultima_pub.creado }}</p>
+      <b>Actualizado: </b><p >{{ ultima_pub.actualizado }}</p>
+      <b>Estado: </b><p >{{ ultima_pub.estado }}</p>
+      <b *ngIf="id_user == 3">Usuario: </b><p *ngIf="id_user == 3">{{ ultima_pub.usuario }}</p>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="list-i" *ngFor="let publi of publicaciones">
+      <input type="hidden" value="{{publi.id}}" class="id_pub">
+      <p>{{ publi.titulo }}</p>
+    </div>
+  </div>
+</div>

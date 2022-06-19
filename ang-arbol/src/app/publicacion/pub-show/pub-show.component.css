@@ -1,0 +1,4 @@
+.card {
+  background-color: var(--pri-color);
+  border-color: var(--cur-color);
+}

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-12">
+    <form class="d-flex" role="search" [formGroup]="formSearch">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" (change)="buscarPublicacion()" formControlName="texto">
+    </form>
+  </div>
+  <div class="col-4 etiquetas">
+    <form class="d-flex" [formGroup]="formSearch">
+      <h2 style="margin-right: 10px;">Etiquetas</h2>
+      <select class="form-select etiquetas-sel" formControlName="etiqueta" (change)="agregarEtiquetas()">
+        <option *ngFor="let eti of etiquetas" value="{{eti.id}}">{{eti.nombre}}</option>
+      </select>
+    </form>
+
+  </div>
+  <div class="col-12 eti-act" (click)="buscarPublicacion()">
+
+  </div>
+  <div class="container">
+    <div class="col-12">
+      <div class="card" *ngFor="let publi of publicaciones" (dblclick)="verPublicacion(publi.id)">
+        <div class="card-body">
+          <h5 class="card-title">{{ publi.titulo }}</h5>
+          <p class="card-text">{{publi.contenido}}</p>
+          <p class="card-text">Creado por {{publi.usuario}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
