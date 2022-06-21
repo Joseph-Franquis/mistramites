@@ -43,6 +43,7 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -189,6 +190,31 @@ class PublicacionesController extends Controller
             $tablas[$key]['actualizado'] = $value->updated_at;
         }
 
+        return response()->json($tablas, 200);
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function carusel()
+    {
+        //
+        $publicaciones = Publicaciones::paginate(5);
+        $tablas = [];
+        $rows = [];
+        foreach ($publicaciones as $key => $value) {
+            $tablas[$key]['id'] = $value->id;
+            $tablas[$key]['titulo'] = $value->titulo;
+            $tablas[$key]['contenido'] = $value->contenido;
+            $usuario = Usuarios::find($value->usuario_id);
+            $tablas[$key]['usuario'] = $usuario->usuario;
+            $tablas[$key]['creado'] = $value->created_at;
+            $tablas[$key]['actualizado'] = $value->updated_at;
+
+        }
         return response()->json($tablas, 200);
     }
 }

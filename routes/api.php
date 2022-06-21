@@ -27,6 +27,7 @@ Route::prefix('publicaciones')->group(function () {
     Route::get('/',[ PublicacionesController::class, 'index']);
     Route::get('/gestion',[ PublicacionesController::class, 'indexGestion']);
     Route::get('/buscar',[ PublicacionesController::class, 'buscador']);
+    Route::get('/carusel',[ PublicacionesController::class, 'carusel']);
     // Route::post('/store',[ PublicacionesController::class, 'store']);
     // Route::delete('/destroy',[ PublicacionesController::class, 'destroy']);
     Route::get('/{id}',[ PublicacionesController::class, 'show']);
