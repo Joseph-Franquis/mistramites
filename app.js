@@ -51,7 +51,7 @@ const io = require('socket.io')(server, options);
 
 
 app.get('/', function (req, res) {
-  // res.sendFile(`${__dirname}/cliente/index.html`)
+  res.sendFile(`${__dirname}/cliente/index.html`)
   console.log("connect");
 });
 
