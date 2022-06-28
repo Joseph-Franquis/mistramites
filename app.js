@@ -3,7 +3,7 @@ const app = express();
 const chalk = require('chalk');
 const cors = require('cors');
 
-const mysql = require('mysql');
+//const mysql = require('mysql');
 // const connection = mysql.createConnection({
 //   host     : 'localhost',
 //   user     : 'root',
