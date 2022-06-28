@@ -35,7 +35,7 @@ class PublicacionesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new post
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -43,7 +43,40 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
         //
-
+        $session = $this->showSesion($request->id_session);
+        if($session != null){
+            $json = json_decode($session->payload);
+            if($json->token == $request->token){
+                $usuario = Usuarios::where('id',$request->usuario)->first();
+                // var_dump($usuario);
+                if($usuario){
+                    if($usuario->usuario_rol == 1 || $usuario->usuario_rol == 3){
+                        $publicacion = new Publicaciones;
+                        $publicacion->titulo = $request->titulo;
+                        $publicacion->usuario_id= $usuario->id;
+                        $publicacion->estado_id = 5;
+                        $publicacion->contenido = $request->contenido;
+                        $publicacion->save();
+                        return response()->json(array(
+                            "action" => "mesage",
+                            "msg" => "Se ha guardado correctamente"
+                        ), 200);
+                    }
+                }else{
+                    return response()->json(array(
+                        "Algo a pasado" => "500"
+                    ), 500);
+                }
+            }else{
+                return response()->json(array(
+                    "No autorizado" => "Token invalido"
+                ), 401);
+            }
+        }else{
+            return response()->json(array(
+                "No autorizado" => "Token inexistente"
+            ), 401);
+        }
     }
 
     /**
@@ -91,7 +124,9 @@ class PublicacionesController extends Controller
     }
 
     /**
-     * Controller to show posts that can be managed,
+     * list the publications that each of all users has if the role is admin or
+     * list the publications of a user to manage them
+     *
      *
      * @return \Illuminate\Http\Response
      */

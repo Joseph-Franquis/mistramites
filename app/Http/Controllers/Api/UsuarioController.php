@@ -39,16 +39,16 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
-        $usuarios = Usuarios::find($id);
-        $tablas = array();
-        foreach ($usuarios as $key => $value) {
-            $tablas[$key]['usuario'] = $value->usuario;
-            $tablas[$key]['nombre'] = $value->nombre;
-            $tablas[$key]['correo'] = $value->correo;
-            $tablas[$key]['creado'] = $value->created_at;
-            $tablas[$key]['actualizado'] = $value->updated_at;
-
-        }
+        $usuario = Usuarios::find($id);
+        $tablas = [
+            'id' => $usuario->id,
+            'usuario' => $usuario->usuario,
+            'contenido' => $usuario->nombre,
+            'correo' => $usuario->correo,
+            'rol' => $usuario->rol,
+            'created_at' => $usuario->created_at,
+            'img' => $usuario->img,
+        ];
         return response()->json($tablas, 200);
     }
 
@@ -75,6 +75,7 @@ class UsuarioController extends Controller
         //
     }
 
+    //Register a new user and save it in the database
     public function register(Request $request){
         $session = $this->showSesion($request->id_session);
         $json = json_decode($session->payload);
@@ -96,26 +97,27 @@ class UsuarioController extends Controller
 
     }
 
+    // Start a session for the first time and return its id
+
     public function login(Request $request){
-        //guarda en una variable el id de sesion
+        //save the session id in a variable
         $id_session = $request->id_session."";
-        // $this->startSesion($request->id_session);
-        //devuelve del base de datos los datos de la sesion
+        //returns the session data from the database
         $session = $this->showSesion($request->id_session);
         $json = json_decode($session->payload);
-        //comprueba si el token de la sesion es igual al enviado por parametro
+        //check if the session token is equal to the one sent by parameter
         if($json->token === $request->token){
-            //buscamos el usuario por  el correo
+            //We look for the user by email
             $usuario = Usuarios::where('correo',$request->correo)->first();
-            //comprobamos si la contraseña es igual a la
+            //check if the password is the same as the one in the database
             if(password_verify($request->password, $usuario->password)){
-                //creamos un nuevo token
+                //we create a new token
                 $usuario->remember_token = bin2hex(openssl_random_pseudo_bytes(24));
-                //guardamos el nuevo valor de la sesion
+                //we save the new value of the session
                 $json = json_decode($session->payload);
                 $json->token = $usuario->remember_token;
                 $json = json_encode($json);
-                //actualizamos los valores de la sesion
+                //we update the session values
                 $this->updateSesion($request->id_session ,['payload' => $json]);
                 $tablas = array();
                 $tablas["token"] = $usuario->remember_token;
@@ -135,7 +137,7 @@ class UsuarioController extends Controller
         }
     }
 
-    //esta funcion inicia por primera vez la sesion devlviendo el id de esta
+    // This function starts the session for the first time, returning its id
     public function firstSesion(Request $request){
         $id_session = bin2hex(openssl_random_pseudo_bytes(30));
         $this->startSesion($id_session);

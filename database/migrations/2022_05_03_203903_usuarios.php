@@ -21,6 +21,7 @@ class Usuarios extends Migration
             $tabla->string('nombre');
             $tabla->string('correo');
             $tabla->string('password');
+            $tabla->string('img')->nullable(true);
             $tabla->integer('usuario_rol');
             $tabla->rememberToken();
             $tabla->date('created_at');

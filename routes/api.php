@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PublicacionesController;
 use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Api\EtiquetasController;
+use App\Http\Controllers\Api\ReportesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::prefix('publicaciones')->group(function () {
     Route::get('/gestion',[ PublicacionesController::class, 'indexGestion']);
     Route::get('/buscar',[ PublicacionesController::class, 'buscador']);
     Route::get('/carusel',[ PublicacionesController::class, 'carusel']);
-    // Route::post('/store',[ PublicacionesController::class, 'store']);
+    Route::post('/store',[ PublicacionesController::class, 'store']);
     // Route::delete('/destroy',[ PublicacionesController::class, 'destroy']);
     Route::get('/{id}',[ PublicacionesController::class, 'show']);
     // Route::put('/update/{id}',[ PublicacionesController::class, 'update']);
@@ -41,12 +42,16 @@ Route::prefix('user')->group(function () {
     Route::get('/session',[ UsuarioController::class, 'firstSesion']);
     // Route::post('/store',[ PublicacionesController::class, 'store']);
     // Route::delete('/destroy',[ PublicacionesController::class, 'destroy']);
-    Route::get('/{id}',[ PublicacionesController::class, 'show']);
+    Route::get('/{id}',[ UsuarioController::class, 'show']);
     // Route::put('/update/{id}',[ PublicacionesController::class, 'update']);
 });
 
 Route::prefix('etiquetas')->group(function () {
     Route::get('/',[ EtiquetasController::class, 'index']);
+});
+
+Route::prefix('reportes')->group(function () {
+    Route::get('/',[ ReportesController::class, 'index']);
 });
 
  Route::prefix('app')->group(function () {
