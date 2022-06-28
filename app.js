@@ -40,8 +40,8 @@ const mysql = require('mysql');
 app.use(cors());
 const options = {
   cors: {
-    //origin: 'http://localhost:4200',
-     origin: 'https://mistramites.000webhostapp.com',
+    origin: 'http://localhost:4200',
+    //  origin: 'https://mistramites.000webhostapp.com',
   },
 };
 
@@ -61,15 +61,12 @@ io.on('connection', function (socket) {
 
   const handshake = socket.id;
 
-  let { id } = socket.handshake.query;
-  let { id_recep } = socket.handshake.query;
+  // let { id } = socket.handshake.query;
+  // let { id_recep } = socket.handshake.query;
 
-  console.log(`${chalk.green(`Nuevo dispositivo: ${handshake}`)} conentado a la ${id}`);
+  console.log(`${chalk.green(`Nuevo dispositivo: ${handshake}`)}`);
 
   socket.on('chat-gen', (msg)=>{
-    // connection.query("INSERT INTO mensajes values ()", function (err, result, fields) {
-
-    // });
     io.emit('chat-gen', msg);
   });
 
@@ -79,7 +76,7 @@ io.on('connection', function (socket) {
   });
 });
 
-server.listen(3000, function () {
+server.listen(5000, function () {
   console.log('\n')
   console.log(`>> Socket listo y escuchando por el puerto: ${chalk.green('5000')}`)
 })
