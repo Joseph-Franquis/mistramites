@@ -79,7 +79,7 @@ io.on('connection', function (socket) {
   });
 });
 
-server.listen(5000, function () {
+server.listen(3000, function () {
   console.log('\n')
   console.log(`>> Socket listo y escuchando por el puerto: ${chalk.green('5000')}`)
 })
