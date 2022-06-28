@@ -40,8 +40,8 @@ const mysql = require('mysql');
 app.use(cors());
 const options = {
   cors: {
-    origin: 'http://localhost:4200',
-    // origin: 'https://mistramites.000webhostapp.com',
+    //origin: 'http://localhost:4200',
+     origin: 'https://mistramites.000webhostapp.com',
   },
 };
 
