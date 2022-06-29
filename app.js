@@ -76,7 +76,8 @@ io.on('connection', function (socket) {
   });
 });
 
-server.listen(3000, function () {
+const PORT = process.env.PORT;
+server.listen(PORT, function () {
   console.log('\n')
   console.log(`>> Socket listo y escuchando por el puerto: ${chalk.green('5000')}`)
 })
